@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Nadezhda Novikova](https://up.htmlacademy.ru/javascript/22/user/110973).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Кривонос] (https://htmlacademy.ru/profile/id1311037).
 
 ---
 
