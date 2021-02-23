@@ -71,3 +71,5 @@ const getObj = function () {
 };
 
 const similarObj = new Array(totalPoints).fill(null).map(() => getObj());
+
+export{similarObj};
