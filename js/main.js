@@ -1,56 +1,73 @@
+//Целые
 const getRandom = (startNumber, endNumber) =>  Math.floor(Math.random() * (endNumber - startNumber) + startNumber);
-getRandom(5, 19);
 
+//Дробные
 const getRandomize = (startNumber, endNumber, dotSign) =>  (Math.random() * (endNumber - startNumber) + startNumber).toFixed(dotSign);
-getRandomize(0, 76.8, 4);
 
 // Задание 3
 
-// данные
-const totalPoints = 10;
-const locX;
-const locY;
-
+// Переменные
 const type = ['palace', 'flat', 'house', 'bungalow'];
 const checkin = ['12:00', '13:00', '14:00'];
 const checkout = ['12:00', '13:00', '14:00'];
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
-const objectDescription = {
-  author = () => {
-  const randomAvatar = _.random(1, 8);
+const totalPoints = 10; // число массивов
+
+
+const getRandomElement = function (array) {
+  return array[getRandom(0, array.length - 1)];
+};
+
+const getRandomArray = function (array) {
+  const randomLength = getRandom(1, 10);
+  const newArray = [];
+  for (let i = 0; i <= randomLength; i++) {
+    newArray.push(array[getRandom(0, array.length - 1)]);
+  }
+  return newArray;
+};
+
+const getRandomUniq = function (array) {
+  const randomLength = getRandom(0, array.length - 1);
+  const newArray = [];
+  for (let i = 0; i <= randomLength; i++) {
+    newArray.push(array.sort()[i]);
+  }
+  return newArray;
+};
+
+const getObj = function () {
+
+  const randomAuthor = {
+    avatar: 'img/avatars/user' + '0' + getRandom(1, 8) + '.png',
+  };
+
+  const randomLocation = {
+    latitude: getRandomize(35.65, 35.7, 5),
+    longitude: getRandomize(139.7, 139.8, 5),
+  };
+
+  const randomPlace = {
+    title: 'Это лучшее жилище в мире!',
+    address: randomLocation.latitude + ' северной широты, ' + randomLocation.longitude + ' восточной долготы',
+    price: getRandom(2000, 10000),
+    type: getRandomArray(type),
+    rooms: getRandom(1,5),
+    guests: getRandom(1,10),
+    checkin: getRandomArray(checkin),
+    checkout: getRandomArray(checkout),
+    features: getRandomUniq(features),
+    description: 'А это - лучшее в мире описание жилища, каким бы оно ни было. Приготовьтесь издавать звуки изумления, ведь арендная плата с вас уже списана!',
+    photos: getRandomArray(photos),
+  };
 
   return {
-  avatar: 'img/avatars/user0' + randomAvatar + '.png',
+    author: randomAuthor,
+    offer: randomPlace,
+    location: randomLocation,
+  };
 };
-},
 
- offer = () => {
-  return {
-    title: 'Кликай дважды, тебе понравится!',
-    address: '',
-    price: '',
-    type: '',
-    rooms: '',
-    guests: '',
-    checkin: '',
-    checkout: '',
-    features: '',
-    description: 'Это лучшее жилище в мире!',
-    photos: [],
-};
-},
-
- location = () => {
-  const locateX = _.random(35.65000, 35.70000, 5);
-  const locateY = _.random(139.70000, 139.80000, 5);
-
-  return {
-  x: locateX,
-  y: locateY,
-};
-}
-}
-
-
-const similarObjects = new Array(totalPoints).fill(null).map(() => objectDescription());
+const similarObj = new Array(totalPoints).fill(null).map(() => getObj());
