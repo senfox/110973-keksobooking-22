@@ -42,9 +42,9 @@ const getRandomUniq = function (array) {
 };
 
 const generateDescription = function (array) {
-	const randomLength = getRandom(0, array.length - 1);
-	const DescRandomLength = getRandom(0, randomLength - 1);
-	const newArray = [];
+  const randomLength = getRandom(0, array.length - 1);
+  const DescRandomLength = getRandom(0, randomLength - 1);
+  const newArray = [];
   for (let i = 0; i <= DescRandomLength; i++) {
     newArray.push(array.sort()[i]);
   }
@@ -84,3 +84,5 @@ const getObj = function () {
 };
 
 const similarObj = new Array(totalPoints).fill(null).map(() => getObj());
+
+similarObj;
