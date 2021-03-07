@@ -7,11 +7,14 @@ const getRandomize = (startNumber, endNumber, dotSign) =>  (Math.random() * (end
 // Задание 3
 
 // Переменные
-const type = ['palace', 'flat', 'house', 'bungalow'];
+const titleLoc = ['Тир-на ногт', 'Ремба', 'Бегма', 'Кашфа','Амбер'];
+const types = ['palace', 'flat', 'house', 'bungalow'];
 const checkin = ['12:00', '13:00', '14:00'];
 const checkout = ['12:00', '13:00', '14:00'];
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+const description = ['изумительный', 'очаровательный', 'отчаянно привлекательный', 'совершенный', 'неимоверно возвышенный', 'способный ввергнуть в пучины отчаяния', 'ужасающе прекрасный', 'ослепительный', 'космический', 'титанически первозданный', 'крайне чистый'];
+
 
 const totalPoints = 10; // число массивов
 
@@ -38,6 +41,16 @@ const getRandomUniq = function (array) {
   return newArray;
 };
 
+const generateDescription = function (array) {
+	const randomLength = getRandom(0, array.length - 1);
+	const DescRandomLength = getRandom(0, randomLength - 1)
+  const newArray = [];
+  for (let i = 0; i <= DescRandomLength; i++) {
+    newArray.push(array.sort()[i]);
+  }
+  return newArray;
+};
+
 const getObj = function () {
 
   const randomAuthor = {
@@ -50,16 +63,16 @@ const getObj = function () {
   };
 
   const randomPlace = {
-    title: 'Это лучшее жилище в мире!',
+    title: getRandomElement(titleLoc),
     address: randomLocation.latitude + ' северной широты, ' + randomLocation.longitude + ' восточной долготы',
-    price: getRandom(2000, 10000),
-    type: getRandomElement(type),
-    rooms: getRandom(1,5),
-    guests: getRandom(1,10),
+    price: getRandom(1, 100000),
+    type: getRandomElement(types),
+    rooms: getRandom(1,500),
+    guests: getRandom(1,100),
     checkin: getRandomElement(checkin),
     checkout: getRandomElement(checkout),
     features: getRandomUniq(features),
-    description: 'А это - лучшее в мире описание жилища, каким бы оно ни было. Приготовьтесь издавать звуки изумления, ведь арендная плата с вас уже списана!',
+    description: generateDescription(description) + ' тип жилища',
     photos: getRandomArray(photos),
   };
 
@@ -72,4 +85,4 @@ const getObj = function () {
 
 const similarObj = new Array(totalPoints).fill(null).map(() => getObj());
 
-export{similarObj};
+console.log(similarObj);
