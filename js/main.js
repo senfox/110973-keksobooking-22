@@ -64,7 +64,7 @@ const getObj = function () {
 
   const randomPlace = {
     title: getRandomElement(titleLoc),
-    address: randomLocation.latitude + ' , ' + randomLocation.longitude,
+    address: randomLocation.latitude + ', ' + randomLocation.longitude,
     price: getRandom(1, 100000),
     type: getRandomElement(types),
     rooms: getRandom(1,500),
